@@ -1,0 +1,19 @@
+# sample-angular-go: Angular frontend + Go API. One repo, two images.
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: sample-angular-go
+
+build:
+  local: {}
+  artifacts:
+    - image: sample-angular-go-frontend
+      context: frontend
+      docker:
+        dockerfile: Dockerfile
+    - image: sample-angular-go-api
+      context: api
+      buildpacks:
+        builder: paketobuildpacks/builder-jammy-base
+
+deploy: {}
